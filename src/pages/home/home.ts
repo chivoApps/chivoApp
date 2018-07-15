@@ -10,8 +10,10 @@ import { DepartmentsPage } from "../departments/departments"
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  //es es la variable que se llama desde [navPush]
+  departments:any = DepartmentsPage;
 
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
 
