@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 
+//se importa la página a la que se va a acceder
+import { DepartmentsPage } from "../departments/departments"
 
 @Component({
   selector: 'page-home',
@@ -20,6 +22,11 @@ export class HomePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  //funcion que va a ejecutar la pagina
+  goToDepartments(){
+    this.navCtrl.push(DepartmentsPage);
   }
 
 }
