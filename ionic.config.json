@@ -1,0 +1,8 @@
+{
+  "name": "chivoApp",
+  "app_id": "73578381",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
