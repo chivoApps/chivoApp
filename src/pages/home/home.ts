@@ -15,10 +15,15 @@ export class HomePage {
 
   //es es la variable que se llama desde [navPush]
   departments:any = DepartmentsPage;
-  categorias = []
+  
+  categorias = [];
+  cat_busqueda = [];
+  busqueda: boolean;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController,
               public db: DatabaseProvider) {
+
+    this.busqueda = false;
 
     this.db.get_categorias().valueChanges().subscribe(
       cats =>{
@@ -38,7 +43,8 @@ export class HomePage {
   }
 
   //funcion que va a ejecutar la pagina
-  goToDepartments(){
+  goToDepartments(index){
+    console.log(index)
     this.navCtrl.push(DepartmentsPage);
   }
 
@@ -50,6 +56,20 @@ export class HomePage {
     };
 
     this.db.crear_categoria(categoria);
+  }
+
+  getItems(ev: any) {
+
+    this.cat_busqueda = []
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.cat_busqueda = this.categorias.filter((item) => {
+        return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
   }
 
 }
