@@ -6,6 +6,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 
+//menus
+import { TabsPage } from "../pages/tabs/tabs";
+
 //paginas
 import { HomePage } from '../pages/home/home';
 import { DepartmentsPage } from "../pages/departments/departments"
@@ -14,6 +17,7 @@ import { DepartmentsPage } from "../pages/departments/departments"
   declarations: [
     MyApp,
     HomePage,
+    TabsPage,
     DepartmentsPage //se deben de importar las pagina aqui
   ],
   imports: [
@@ -24,6 +28,7 @@ import { DepartmentsPage } from "../pages/departments/departments"
   entryComponents: [
     MyApp,
     HomePage,
+    TabsPage,
     DepartmentsPage //se deben de importar las pagina aqui
   ],
   providers: [
