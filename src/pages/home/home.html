@@ -1,59 +1,36 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-     ChivoApp
-    </ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>
+		</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <button ion-button full color="primary" (click)="showAlert()">Click</button>
-  <button ion-button full color="danger" (click)="goToDepartments()">Ir a Departaments</button>
-  
 
-  <button ion-button full color="secondary" [navPush]="departments">Forma Sencilla</button>
+	<ion-card class="bienvenida">
+		<ion-card-header class="header">
+			Bienvenido a ChivoApp 
+		</ion-card-header>
+		<ion-card-content>
+			Acá en este bolado te ayudaremos a comprender significados de palabras propias de nuestra jerga guanaca.
+		</ion-card-content>
+	</ion-card>
+	
 
-  <h1>Bienvenido a ChivoApp </h1>
-  <h5>Acá en este bolado te ayudaremos a comprender significados de palabras propias de nuestra jerga guanaca.</h5>
-  
+	<ion-card>
+		<ion-card-header>
+			LAS CATEGORIAS MAE
+		</ion-card-header>
+	
+		<ion-list>
+			<button ion-item *ngFor="let categoria of categorias">
+				<ion-icon name="cafe" item-start></ion-icon>
+				{{ categoria.nombre}}
+			</button>
+	
+		</ion-list>
+    </ion-card>
+    
+    <button ion-button full color="primary" (click)="crear_categoria()">AGREGAR CAT</button>
 
-  <ion-card>
-    <ion-card-header>
-      LAS CATEGORIAS MAE
-    </ion-card-header>
-  
-    <ion-list>
-      <button ion-item (click)="goToDepartments()">
-        <ion-icon name="cafe" item-start></ion-icon>
-        COMIDA
-      </button>
-  
-      <button ion-item>
-        <ion-icon name="medical" item-start></ion-icon>
-        INSULTOS
-      </button>
-  
-      <button ion-item>
-        <ion-icon name="beer" item-start></ion-icon>
-        ACTIVIDADES
-      </button>
-  
-      <button ion-item>
-        <ion-icon name="map" item-start></ion-icon>
-        FRASES FOR DEPARTAMENTO
-      </button>
-  
-      <button ion-item>
-        <ion-icon name="" item-start></ion-icon>
-        CATEGORIA N
-      </button>
-  
-      <button ion-item>
-        <ion-icon name="" item-start></ion-icon>
-        CATEGORIA N
-      </button>
-  
-    </ion-list>
-  </ion-card>
 </ion-content>

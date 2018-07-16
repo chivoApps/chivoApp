@@ -13,6 +13,21 @@ import { TabsPage } from "../pages/tabs/tabs";
 import { HomePage } from '../pages/home/home';
 import { DepartmentsPage } from "../pages/departments/departments"
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { DatabaseProvider } from '../providers/database/database';
+
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyAQR0lmoWFN2PThw0QnuIzjsKMwcQAgClg",
+  authDomain: "chivoapp.firebaseapp.com",
+  databaseURL: "https://chivoapp.firebaseio.com",
+  storageBucket: "chivoapp.appspot.com",
+  messagingSenderId: '326875584645'
+};
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -22,7 +37,10 @@ import { DepartmentsPage } from "../pages/departments/departments"
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +52,9 @@ import { DepartmentsPage } from "../pages/departments/departments"
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatabaseProvider,
+    AngularFireDatabase
   ]
 })
 export class AppModule {}
