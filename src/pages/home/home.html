@@ -5,25 +5,25 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="fondo">
 
 	<ion-card class="bienvenida">
 		<ion-card-header class="header">
 			Bienvenido a ChivoApp 
 		</ion-card-header>
-		<ion-card-content>
+		<ion-card-content class="estiloTarjeta">
 			Acá en este bolado te ayudaremos a comprender significados de palabras propias de nuestra jerga guanaca.
 		</ion-card-content>
 	</ion-card>
 	
 
-	<ion-card>
-		<ion-card-header>
+	<ion-card class="estiloTarjeta">
+		<ion-card-header class="estiloTarjeta">
 			LAS CATEGORIAS MAE
 		</ion-card-header>
 	
 		<ion-list>
-			<button ion-item *ngFor="let categoria of categorias">
+			<button ion-item *ngFor="let categoria of categorias" class="estiloTarjeta">
 				<ion-icon name="cafe" item-start></ion-icon>
 				{{ categoria.nombre}}
 			</button>
