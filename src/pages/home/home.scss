@@ -1,10 +1,16 @@
 page-home {
 
     .header{
-        background-color: #10ac84;
+        background-color: #222f3e;
         color: white;
-        font-weight: bold;
-        text-transform: uppercase;
+        
+
+    }
+    .estiloNombreApp {
+        font-family: Script;
+        font-size: 22px;
+        color: white;
+        
     }
 
     .headercon {
@@ -15,15 +21,17 @@ page-home {
     .fondo {
     background: #2f3640;
     color: #ffffff;
-    font-family: sans-serif;
+    font-family: 'Century Gothic'
     
     }
 
     .estiloTarjeta{
         background: #353b48;
         color: #ffffff;
-        border-color: #ffffff;
-        border: 2px;
+        text-transform: uppercase;
+        font-size: 13px;
+        
+        
         
     }
 
