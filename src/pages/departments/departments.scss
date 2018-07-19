@@ -1,3 +1,76 @@
 page-departments {
+    .fondo {
+        background: #2f3640;
+        color: #ffffff;
+        font-family: 'Century Gothic';
+        text-decoration: none;
+        
+        }
+        .headerOriente {
+            background: #1a1918;
+            color: #ffffff;
+            
+            
+            }
+            .headerCentro {
+                background: #091c36;
+                color: #ffffff;
+                
+                
+                }
+                .headerOccidente {
+                    background: #25043b;
+                    color: #ffffff;
+                   
+                    
+                    }
+        .header{
+            background-color: #222f3e;
+            color: white;
+            
+    
+        }
 
+        .estiloh1 {
+            font-size: 20px;
+            text-align: center;
+            color: white;
+            font-family: 'Century Gothic'
+        }
+
+        .estiloNombreApp {
+            font-family: Script;
+            font-size: 26px;
+            color: white;
+            
+        }
+
+        .card-background-page {
+            background: #2f3640;
+            
+            ion-card {
+              position: relative;
+              text-align: center;
+            }
+          
+            .card-title {
+              position: absolute;
+              top: 70%;
+              font-size: 23px;
+              width: 100%;
+              font-family: 'Century Gothic';
+              color: #fff;
+            }
+          
+            .card-subtitle {
+              font-size: 1.0em;
+              position: absolute;
+              top: 52%;
+              width: 100%;
+              color: #fff;
+            }
+          
+          }
 }
+
+
