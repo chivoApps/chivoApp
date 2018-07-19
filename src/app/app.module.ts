@@ -17,6 +17,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { DatabaseProvider } from '../providers/database/database';
+import { UsuarioProvider } from '../providers/usuario/usuario';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 
 export const firebaseConfig = {
@@ -54,7 +56,9 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider,
-    AngularFireDatabase
+    AngularFireDatabase,
+    UsuarioProvider,
+    Facebook
   ]
 })
 export class AppModule {}
