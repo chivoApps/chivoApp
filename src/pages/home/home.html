@@ -4,17 +4,21 @@
         </ion-title>
     </ion-navbar> -->
     
-    <ion-toolbar color="dark">
+    <ion-toolbar color="primary">
         
         <ion-buttons>
-                <button ion-button menuToggle icon-only color="light" start>
+                <button ion-button menuToggle icon-only color="light" start *ngIf="!busqueda">
                     <ion-icon name="menu"></ion-icon>
                 </button>
         </ion-buttons>
 
+        <ion-searchbar *ngIf="busqueda" full (ionInput)="getItems($event)"
+            showCancelButton="true" (ionCancel)="busqueda=!busqueda"
+            animated="true" placeholder="Buscar el significado de una palabra"></ion-searchbar>
+
         <ion-buttons end>
             <button ion-button icon-only color="light" (click)="busqueda=!busqueda">
-              <ion-icon name="search"></ion-icon>
+              <ion-icon name="search" *ngIf="!busqueda" ></ion-icon>
             </button>
         </ion-buttons>
 
@@ -23,9 +27,6 @@
 </ion-header>
 
 <ion-content class="fondo">
-    
-    <ion-searchbar *ngIf="busqueda" full (ionInput)="getItems($event)"></ion-searchbar>
-
 
     <ion-list *ngIf="busqueda" full>
             <ion-item *ngFor="let categoria of cat_busqueda">
@@ -36,10 +37,10 @@
 
 	<ion-card class="bienvenida">
 		<ion-card-header class="header">
-			BIENVENIDO A <p class="estiloNombreApp">ChivoApp </p>
+			<h1>BIENVENIDO A <span class="estiloNombreApp">ChivoApp</span> </h1>
 		</ion-card-header>
 		<ion-card-content class="estiloTarjeta">
-			<br>Acá en este bolado te ayudaremos a comprender significados de palabras propias de nuestra jerga guanaca.
+			Acá en este bolado te ayudaremos a comprender significados de palabras propias de nuestra jerga guanaca.
 		</ion-card-content>
 	</ion-card>
 	

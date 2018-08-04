@@ -1,50 +1,5 @@
 page-home {
 
-    .header{
-        background-color: #222f3e;
-        color: white;
-        
-
-    }
-    .estiloNombreApp {
-        font-family: Script;
-        font-size: 22px;
-        color: white;
-        
-    }
-
-    .headercon {
-        color: black;
-
-    }
-
-    .fondo {
-    background: #2f3640;
-    color: #ffffff;
-    font-family: 'Century Gothic'
-    
-    }
-
-    .estiloTarjeta{
-        background: #353b48;
-        color: #ffffff;
-        text-transform: uppercase;
-        font-size: 13px;
-        
-        
-        
-    }
-
-    .estiloh5 {
-        font-style: italic;
-        text-align: center;
-    }
-
-    .estiloh1 {
-        font-size: 15px;
-        text-align: justify;
-    }
-
     ion-searchbar{        
         .searchbar-input-container{  
             
@@ -53,6 +8,21 @@ page-home {
             }
         }
      }
+
+    .estiloNombreApp{
+        font-family:'OverTheSeasPersonalUse';
+        font-size: 22pt !important;
+    }
+
+    h1{
+        font-family: 'Noodle';
+        font-size: 20pt !important;
+        text-align: center;
+    }
+
+    .estiloTarjeta{
+        text-align: justify;
+    }
 
 
 }

@@ -12,6 +12,7 @@ import { TabsPage } from "../pages/tabs/tabs";
 //paginas
 import { HomePage } from '../pages/home/home';
 import { DepartmentsPage } from "../pages/departments/departments"
+import { LoginPage } from "../pages/login/login";
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -19,7 +20,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { DatabaseProvider } from '../providers/database/database';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-
+import { GooglePlus } from '@ionic-native/google-plus';
+import { AboutPage } from '../pages/about/about';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAQR0lmoWFN2PThw0QnuIzjsKMwcQAgClg",
@@ -35,7 +37,9 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     TabsPage,
-    DepartmentsPage //se deben de importar las pagina aqui
+    DepartmentsPage, //se deben de importar las pagina aqui
+    LoginPage,
+    AboutPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,9 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     TabsPage,
-    DepartmentsPage //se deben de importar las pagina aqui
+    DepartmentsPage, //se deben de importar las pagina aqui
+    LoginPage,
+    AboutPage
   ],
   providers: [
     StatusBar,
@@ -58,7 +64,8 @@ export const firebaseConfig = {
     DatabaseProvider,
     AngularFireDatabase,
     UsuarioProvider,
-    Facebook
+    Facebook,
+    GooglePlus
   ]
 })
 export class AppModule {}

@@ -1,0 +1,36 @@
+page-login {
+
+    ion-card{
+        position: absolute;
+    	top: 15%;
+    }
+
+    ion-content{
+
+        position: relative;
+        background: rgba(87,101,116,1);
+        background: -moz-radial-gradient(center, ellipse cover, rgba(87,101,116,1) 0%, rgba(34,47,62,1) 100%);
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(87,101,116,1)), color-stop(100%, rgba(34,47,62,1)));
+        background: -webkit-radial-gradient(center, ellipse cover, rgba(87,101,116,1) 0%, rgba(34,47,62,1) 100%);
+        background: -o-radial-gradient(center, ellipse cover, rgba(87,101,116,1) 0%, rgba(34,47,62,1) 100%);
+        background: -ms-radial-gradient(center, ellipse cover, rgba(87,101,116,1) 0%, rgba(34,47,62,1) 100%);
+        background: radial-gradient(ellipse at center, rgba(87,101,116,1) 0%, rgba(34,47,62,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#576574', endColorstr='#222f3e', GradientType=1 );
+    }
+
+    h3{
+        text-align: center;
+        margin-bottom: 12px !important;
+        margin-top: 10px !important;
+        font-size: 16pt !important;
+    }
+
+    #imagen-login{
+        height: 70%;
+        width: 70%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}

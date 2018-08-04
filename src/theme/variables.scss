@@ -39,7 +39,11 @@ $colors: (
   danger:     #ee5253,
   light:      #c8d6e5,
   dark:       #222f3e,
-  semi-dark: #576574
+  semi-dark: #576574,
+  pastel_red: (
+    base: #ee5253,
+    contrast: #c8d6e5
+  )
 );
 
 // App iOS Variables
@@ -86,3 +90,13 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+@font-face {
+  font-family: "OverTheSeasPersonalUse";
+  src: url("../assets/fonts/OverTheSeasPersonalUse.ttf");
+}
+
+@font-face {
+  font-family: "Noodle";
+  src: url("../assets/fonts/big_noodle_titling.ttf");
+}
