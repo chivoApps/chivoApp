@@ -17,9 +17,11 @@ import { LoginPage } from "../pages/login/login";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 import { DatabaseProvider } from '../providers/database/database';
 import { UsuarioProvider } from '../providers/usuario/usuario';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AboutPage } from '../pages/about/about';
 
@@ -28,7 +30,8 @@ export const firebaseConfig = {
   authDomain: "chivoapp.firebaseapp.com",
   databaseURL: "https://chivoapp.firebaseio.com",
   storageBucket: "chivoapp.appspot.com",
-  messagingSenderId: '326875584645'
+  messagingSenderId: '326875584645',
+  projectId: "chivoapp"
 };
 
 
@@ -46,7 +49,8 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule.enablePersistence()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

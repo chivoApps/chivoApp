@@ -23,12 +23,12 @@
     </div>
 
     <div class="card-subtitle">
-      <button ion-button color="primary" block icon-start>
+      <button ion-button color="primary" block icon-start (click)="login_facebook()">
         <ion-icon name="logo-facebook"></ion-icon>
         Facebook
       </button>
       
-      <button ion-button color="danger" block icon-start>
+      <button ion-button color="danger" block icon-start (click)="login_google()">
         <ion-icon name="logo-google"></ion-icon>
         Google
       </button>

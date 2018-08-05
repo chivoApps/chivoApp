@@ -28,6 +28,10 @@
 
 <ion-content class="fondo">
 
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
     <ion-list *ngIf="busqueda" full>
             <ion-item *ngFor="let categoria of cat_busqueda">
               <ion-icon name="leaf" item-start></ion-icon>
@@ -47,15 +51,15 @@
 
 	<ion-card class="estiloTarjeta">
 		<ion-card-header class="estiloTarjeta">
-		LAS CATEGORIAS MAE
+		CATEGORIAS
 		</ion-card-header>
 	
 		<ion-list>
-            <button ion-item *ngFor="let categoria of categorias" 
+            <button ion-item *ngFor="let categoria of categorias | async" 
                 class="estiloTarjeta" (click)="goToDepartments(categoria.id)">
-				<ion-icon name="cafe" item-start></ion-icon>
-				{{ categoria.nombre}}
-			</button>
+				<ion-icon [name]="categoria.icon" item-start></ion-icon>
+				{{ categoria.categoria}}
+			</button> 
 	
 		</ion-list>
     </ion-card>

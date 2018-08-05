@@ -7,6 +7,7 @@ import { DepartmentsPage } from "../departments/departments"
 //datbase
 import { DatabaseProvider } from "../../providers/database/database";
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -16,7 +17,7 @@ export class HomePage {
   //es es la variable que se llama desde [navPush]
   departments:any = DepartmentsPage;
   
-  categorias = [];
+  public categorias: any;
   cat_busqueda = [];
   busqueda: boolean;
 
@@ -25,11 +26,7 @@ export class HomePage {
 
     this.busqueda = false;
 
-    this.db.get_categorias().valueChanges().subscribe(
-      cats =>{
-        this.categorias = cats;
-      }
-    );
+    this.categorias = this.db.get_categorias().valueChanges();
 
   }
 
@@ -49,13 +46,14 @@ export class HomePage {
   }
 
   crear_categoria(){
+    this.db.crear_categoria("PRUEBA", "home");
+  }
 
-    let categoria = {
-      id: Date.now(),
-      nombre: "CATEGORIA DE PRUEBA"
-    };
-
-    this.db.crear_categoria(categoria);
+  doRefresh(refresher) {
+    setTimeout(() => {
+      this.categorias = this.db.get_categorias().valueChanges();
+      refresher.complete();
+    }, 2000);
   }
 
   getItems(ev: any) {
@@ -66,9 +64,9 @@ export class HomePage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.cat_busqueda = this.categorias.filter((item) => {
-        return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+      //this.cat_busqueda = this.categorias.filter((item) => {
+        //return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      //})
     }
   }
 

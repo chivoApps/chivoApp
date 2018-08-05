@@ -5,14 +5,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from "../pages/tabs/tabs";
 import { LoginPage } from "../pages/login/login";
-import { HomePage } from "../pages/home/home";
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
 
 import { UsuarioProvider, Credenciales } from '../providers/usuario/usuario';
 
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { Facebook } from '@ionic-native/facebook';
 import { AboutPage } from '../pages/about/about';
 
 @Component({
@@ -24,6 +23,7 @@ export class MyApp {
 
   rootPage:any = TabsPage;
   user: Credenciales = {};
+  logueado: boolean;
 
   pages: Array<{title: string, component: any}>;
 
@@ -32,7 +32,8 @@ export class MyApp {
               public usuarioProv: UsuarioProvider,
               private menuCtrl: MenuController,
               private fb: Facebook,
-              private modalCtrl: ModalController) {
+              private modalCtrl: ModalController,
+              private googlePlus: GooglePlus) {
 
     this.pages = [
       { title: 'Inicio', component: TabsPage },
@@ -45,41 +46,19 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
-    });
-
-  }
-
-  signInWithFacebook() {
-    
-    if( this.platform.is("cordova")){
-
-      this.fb.login(['public_profile', 'user_friends', 'email'])
-      .then((res: FacebookLoginResponse) => console.log('Logged into Facebook!', JSON.stringify(res)))
-      .catch(e => console.log('Error logging into Facebook', JSON.stringify(e)));
-                  
-    }else{
-
-      this.afAuth.auth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(res => {
-
-        console.log(JSON.stringify(res))
-        let user = res.user;
-        
-        this.usuarioProv.cargar_usuario(
-          user.displayName,
-          user.email,
-          user.photoURL,
-          user.uid,
-          "facebook"
-        );
-
+      this.afAuth.authState.subscribe(data => {
+        console.log("log state: ", data);
+        if( data != null){
+          this.user.imagen = data.photoURL;
+          this.user.nombre = data.displayName;
+          this.logueado = true;
+        }else{
+          this.logueado = false;
+        }
+  
       });
 
-    }
-
-    this.user = this.usuarioProv.usuario;
-    this.menuCtrl.close();
+    });
 
   }
 
@@ -88,7 +67,24 @@ export class MyApp {
   }
 
   login(){
-    this.modalCtrl.create(LoginPage).present();
+    let modal = this.modalCtrl.create(LoginPage)
+    modal.present();
+
+    modal.onDidDismiss( data => {
+      console.log(data);
+      
+      if(data !=null){
+        this.user = data;
+      }
+
+    });
+  }
+
+  cerrar_sesion(){
+    this.afAuth.auth.signOut().then(res => {
+      this.usuarioProv.usuario = {}
+      this.googlePlus.disconnect();
+    });
   }
 
 }
