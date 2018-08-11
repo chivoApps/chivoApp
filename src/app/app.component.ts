@@ -1,17 +1,17 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, Nav, ModalController} from 'ionic-angular';
+import { Platform, Nav, ModalController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from "../pages/tabs/tabs";
 import { LoginPage } from "../pages/login/login";
+import { PalabrasPage } from "../pages/palabras/palabras";
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { UsuarioProvider, Credenciales } from '../providers/usuario/usuario';
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import { Facebook } from '@ionic-native/facebook';
 import { AboutPage } from '../pages/about/about';
 
 @Component({
@@ -30,14 +30,13 @@ export class MyApp {
   constructor(private platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
               private afAuth: AngularFireAuth,
               public usuarioProv: UsuarioProvider,
-              private menuCtrl: MenuController,
-              private fb: Facebook,
               private modalCtrl: ModalController,
               private googlePlus: GooglePlus) {
 
     this.pages = [
       { title: 'Inicio', component: TabsPage },
-      { title: 'Acerca de', component: AboutPage}
+      { title: 'Acerca de', component: AboutPage },
+      { title: 'Agregar Palabra', component: PalabrasPage }
     ];
 
     platform.ready().then(() => {
@@ -49,7 +48,7 @@ export class MyApp {
       this.afAuth.authState.subscribe(data => {
         console.log("log state: ", data);
         if( data != null){
-          this.user.imagen = data.photoURL;
+          this.user.imagen = data.photoURL+"?width=1024&height=1024";
           this.user.nombre = data.displayName;
           this.logueado = true;
         }else{

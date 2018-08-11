@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 //se importa la página a la que se va a acceder
 import { DepartmentsPage } from "../departments/departments"
+import { PalabraDetailPage } from '../palabra-detail/palabra-detail';
 
 //datbase
 import { DatabaseProvider } from "../../providers/database/database";
@@ -20,23 +21,15 @@ export class HomePage {
   public categorias: any;
   cat_busqueda = [];
   busqueda: boolean;
+  search: any;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController,
               public db: DatabaseProvider) {
 
     this.busqueda = false;
 
     this.categorias = this.db.get_categorias().valueChanges();
 
-  }
-
-  showAlert() {
-    const alert = this.alertCtrl.create({
-      title: 'New Friend!',
-      subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
-      buttons: ['OK']
-    });
-    alert.present();
   }
 
   //funcion que va a ejecutar la pagina
@@ -60,14 +53,28 @@ export class HomePage {
 
     this.cat_busqueda = []
     // set val to the value of the searchbar
-    const val = ev.target.value;
+    const start = ev.target.value;
 
     // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
+    if (start && start.trim() != '') {
       //this.cat_busqueda = this.categorias.filter((item) => {
         //return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
       //})
+      this.search = this.db.search(start).valueChanges();
+    }else{
+      this.search = null;
     }
+  }
+
+  open_definicion(data){
+    console.log(data);
+
+    const ops = {
+      "showBackdrop": true
+    }
+
+    this.modalCtrl.create(PalabraDetailPage, { palabra: data }, ops).present();
+
   }
 
 }

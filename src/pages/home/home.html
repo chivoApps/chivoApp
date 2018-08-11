@@ -32,12 +32,14 @@
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-    <ion-list *ngIf="busqueda" full>
-            <ion-item *ngFor="let categoria of cat_busqueda">
-              <ion-icon name="leaf" item-start></ion-icon>
-                {{categoria.nombre}}
-            </ion-item>
-    </ion-list>
+    <div *ngIf="busqueda" full>
+        <ion-card *ngFor="let result of search | async" (click)="open_definicion(result)">
+            <ion-card-header> {{result.palabra}} </ion-card-header>
+            <ion-card-content>
+                {{ result.definicion }}
+            </ion-card-content>
+        </ion-card>
+    </div>
 
 	<ion-card class="bienvenida">
 		<ion-card-header class="header">

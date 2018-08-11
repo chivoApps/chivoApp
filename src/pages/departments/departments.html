@@ -15,129 +15,15 @@
 
   <ion-content class="card-background-page">
       <h1 class="estiloh1">DEPARTAMENTOS</h1>
-<!--______________________________ZONA ORIENTAL___________________________________________-->
-    <ion-card class="headerOriente">
-            <p class="estiloNombreApp">Zona Oriental </p>
-            <!--SAN MIGUEL-->
-        <ion-card>
-            <button class="headerOriente">
-              <img src="https://cdn-pro.elsalvador.com/wp-content/uploads/2017/01/30185217/1476487127734.jpg"/>
-              <div class="card-title">SAN MIGUEL</div>
-            </button>
-          </ion-card>
-          <!--LA UNION-->
-        <ion-card>
-            <button class="headerOriente">
-              <img src="https://i.ytimg.com/vi/a8fhDfuG2bg/maxresdefault.jpg"/>
-              <div class="card-title">LA UNIÓN</div>
-            </button>
-          </ion-card>
 
-          <!--MORAZAN-->
-        <ion-card>
-            <button class="headerOriente">
-              <img src="https://1.bp.blogspot.com/-i1MD1-QAqmE/WRvWvuj1-jI/AAAAAAAA1gY/NtkrymymTogahJdW7Tnc7I6Aq8vnLVKlgCLcB/s1600/6.jpg"/>
-              <div class="card-title">MORAZÁN</div>
-            </button>
-          </ion-card>
-
-          <!--USULUTAN-->
-        <ion-card>
-            <button class="headerOriente">
-              <img src="https://elsalvadoreshermoso.com/wp-content/uploads/2016/10/Usulutan-El-Salvador.jpg"/>
-              <div class="card-title">USULUTAN</div>
-            </button>
-          </ion-card>
-    
+    <ion-card *ngFor="let departamento of departamentos"  (click)="openDepartment(departamento.name)">
+      <img src="assets/imgs/{{departamento.img}}"/>
+      <div class="banner">
+        <div class="card-title">{{ departamento.name }}</div>
+        <div class="card-subtitle">{{ departamento.zona }}</div>
+      </div>
     </ion-card>
-     <!--______________________________ZONA CENTRAL___________________________________________-->
-    <ion-card class="headerCentro">
-        <p class="estiloNombreApp">Zona Central </p>
-        <!--SAN SALVADOR-->
-    <ion-card>
-        <button class="headerCentro">
-          <img src="http://ultimahora.sv/wp-content/uploads/2017/10/plaza-barrios-e1509068599856-735x400.jpg"/>
-          <div class="card-title">SAN SALVADOR</div>
-        </button>
-      </ion-card>
-      <!--CUSCATLAN-->
-    <ion-card>
-        <button class="headerCentro">
-          <img src="https://www.asamblea.gob.sv/sites/default/files/2018-03/cojute_0.jpg"/>
-          <div class="card-title">CUSCATLAN</div>
-        </button>
-      </ion-card>
 
-      <!--LA LIBERTAD-->
-    <ion-card>
-        <button class="headerCentro">
-          <img src="http://farm5.static.flickr.com/4114/4933747478_9faed84400.jpg"/>
-          <div class="card-title">LA LIBERTAD</div>
-        </button>
-      </ion-card>
-
-      <!--CHALATENANGO-->
-    <ion-card>
-        <button class="headerCentro">
-          <img src="http://ttnotes.com/images/iglesia-de-chalatenango-chalatenango-3.jpg"/>
-          <div class="card-title">CHALATENANGO</div>
-        </button>
-      </ion-card>
-
-      <!--SAN VICENTE-->
-    <ion-card>
-        <button class="headerCentro">
-          <img src="https://c1.staticflickr.com/3/2124/2173831742_3c79c7b552_z.jpg?zz=1"/>
-          <div class="card-title">SAN VICENTE</div>
-        </button>
-      </ion-card>
-
-      <!--LA PAZ-->
-    <ion-card>
-        <button class="headerCentro">
-          <img src="https://cdn-pro.elsalvador.com/wp-content/uploads/2017/11/Zacatecoluca-2.jpg"/>
-          <div class="card-title">LA PAZ</div>
-        </button>
-      </ion-card>
-
-       <!--CABAÑAS-->
-    <ion-card>
-        <button class="headerCentro">
-          <img src="http://www.lapazcentro.org/wp-content/uploads/2017/10/artesania-pace%C3%B1a.jpg"/>
-          <div class="card-title">CABAÑAS</div>
-        </button>
-      </ion-card>
-
-</ion-card>
-
-<!--______________________________ZONA OCCIDENTAL___________________________________________-->
-<ion-card class="headerOccidente">
-    <p class="estiloNombreApp">Zona Occidental </p>
-    <!--SANTA ANA-->
-<ion-card>
-    <button class="headerOccidente">
-      <img src="http://www.cultura.gob.sv/wp-content/uploads/2016/02/Teatro_Santa_Ana_011111.jpg"/>
-      <div class="card-title">SANTA ANA</div>
-    </button>
-  </ion-card>
-  <!--AHUACHAPAN-->
-<ion-card>
-    <button class="headerOccidente">
-      <img src="http://cdn.devacaciones.sv/wp-content/uploads/2013/06/ataco.jpg"/>
-      <div class="card-title">AHUACHAPAN</div>
-    </button>
-  </ion-card>
-
-  <!--SONSONATE-->
-<ion-card>
-    <button class="headerOccidente">
-      <img src="http://4.bp.blogspot.com/-6LZnRfWxu8E/UYCmGlsbf2I/AAAAAAAAAdY/NKUiXoIgHEY/s1600/3365946349_46fdac74bd_o.jpg"/>
-      <div class="card-title">SONSONATE</div>
-    </button>
-  </ion-card>
-
-</ion-card>
-
-</ion-content>
+  </ion-content>
 
 

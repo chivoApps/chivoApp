@@ -13,6 +13,9 @@ import { TabsPage } from "../pages/tabs/tabs";
 import { HomePage } from '../pages/home/home';
 import { DepartmentsPage } from "../pages/departments/departments"
 import { LoginPage } from "../pages/login/login";
+import { AboutPage } from '../pages/about/about';
+import { DepartmentDetailPage } from "../pages/department-detail/department-detail";
+import { PalabrasPage } from "../pages/palabras/palabras";
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -23,7 +26,7 @@ import { DatabaseProvider } from '../providers/database/database';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
-import { AboutPage } from '../pages/about/about';
+import { PalabraDetailPage } from '../pages/palabra-detail/palabra-detail';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAQR0lmoWFN2PThw0QnuIzjsKMwcQAgClg",
@@ -42,7 +45,10 @@ export const firebaseConfig = {
     TabsPage,
     DepartmentsPage, //se deben de importar las pagina aqui
     LoginPage,
-    AboutPage
+    AboutPage,
+    DepartmentDetailPage,
+    PalabrasPage,
+    PalabraDetailPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +65,10 @@ export const firebaseConfig = {
     TabsPage,
     DepartmentsPage, //se deben de importar las pagina aqui
     LoginPage,
-    AboutPage
+    AboutPage,
+    DepartmentDetailPage,
+    PalabrasPage,
+    PalabraDetailPage
   ],
   providers: [
     StatusBar,
