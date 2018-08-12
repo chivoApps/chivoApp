@@ -1,0 +1,42 @@
+<!--
+  Generated template for the CategoriasListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>categorias-list</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+
+  	<ion-card class="estiloTarjeta">
+		<ion-card-header class="estiloTarjeta">
+		CATEGORIAS
+		</ion-card-header>
+	
+		<ion-list>
+      		<button ion-item *ngFor="let categoria of categorias | async" 
+            	class="estiloTarjeta" (click)="goToCategory(categoria.categoria)">
+				<ion-icon [name]="categoria.icon" item-start></ion-icon>
+				{{ categoria.categoria}}
+			</button> 
+		</ion-list>
+    </ion-card>
+	
+	<ion-fab bottom right>
+		<button ion-fab mini (click)="crear_categoria()"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>
+
+	<button ion-button (click)="modificar()" color="primary">Modificar</button>
+</ion-content>

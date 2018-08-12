@@ -18,7 +18,6 @@ export class HomePage {
   //es es la variable que se llama desde [navPush]
   departments:any = DepartmentsPage;
   
-  public categorias: any;
   cat_busqueda = [];
   busqueda: boolean;
   search: any;
@@ -28,25 +27,8 @@ export class HomePage {
 
     this.busqueda = false;
 
-    this.categorias = this.db.get_categorias().valueChanges();
+    
 
-  }
-
-  //funcion que va a ejecutar la pagina
-  goToDepartments(index){
-    console.log(index)
-    this.navCtrl.push(DepartmentsPage);
-  }
-
-  crear_categoria(){
-    this.db.crear_categoria("PRUEBA", "home");
-  }
-
-  doRefresh(refresher) {
-    setTimeout(() => {
-      this.categorias = this.db.get_categorias().valueChanges();
-      refresher.complete();
-    }, 2000);
   }
 
   getItems(ev: any) {

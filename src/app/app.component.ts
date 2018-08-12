@@ -62,7 +62,11 @@ export class MyApp {
   }
 
   openPage(page) {
-    this.nav.setRoot(page.component);
+    if(page.title === "Agregar Palabra"){
+      this.nav.setRoot(page.component, {usuario:this.user.nombre});
+    }else{
+      this.nav.setRoot(page.component);
+    }
   }
 
   login(){

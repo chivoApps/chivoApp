@@ -19,6 +19,8 @@ export class PalabrasPage {
   ];
 
   public categorias: any;
+  public nombre_usuario: string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private _FB: FormBuilder, public db: DatabaseProvider) {
@@ -27,17 +29,16 @@ export class PalabrasPage {
                   palabra       	  : ['', Validators.required],
                   definicion        : ['', Validators.required],
                   ejemplos     : this._FB.array([
-                     this.initTechnologyFields()
+                     this.crearEjemplo()
                   ]),
                   departamentos: ['', Validators.required],
                   categorias: ['', Validators.required]
                });
 
-               this.categorias = this.db.get_categorias().valueChanges();
-
+              this.categorias = this.db.get_categorias().valueChanges();
   }
 
-  initTechnologyFields() : FormGroup
+  crearEjemplo() : FormGroup
   {
      return this._FB.group({
         ejemplo 		: ['', Validators.required]
@@ -46,49 +47,25 @@ export class PalabrasPage {
 
 
 
-  /**
-   * Programmatically generates a new technology input field
-   *
-   * @public
-   * @method addNewInputField
-   * @return {none}
-   */
-  addNewInputField() : void
+  agregarNuevoEjemplo() : void
   {
      const control = <FormArray>this.form.controls.ejemplos;
-     control.push(this.initTechnologyFields());
+     control.push(this.crearEjemplo());
   }
 
 
 
-  /**
-   * Programmatically removes a recently generated technology input field
-   *
-   * @public
-   * @method removeInputField
-   * @param i    {number}      The position of the object in the array that needs to removed
-   * @return {none}
-   */
-  removeInputField(i : number) : void
+  removerEjemplo(i : number) : void
   {
      const control = <FormArray>this.form.controls.ejemplos;
      control.removeAt(i);
   }
 
 
-
-  /**
-   * Receive the submitted form data
-   *
-   * @public
-   * @method manage
-   * @param val    {object}      The posted form data
-   * @return {none}
-   */
-  manage(val : any) : void
-  {
-     console.dir(val);
-     this.db.add_palabra(val);
+  agregar(val : any) : void
+  { 
+    this.db.add_palabra(val, this.navParams.get("usuario"));
+    this.form.reset();
   }
 
 

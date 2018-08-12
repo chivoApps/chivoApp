@@ -11,7 +11,7 @@
 
   <form
       [formGroup]="form"
-      (ngSubmit)="manage(form.value)">
+      (ngSubmit)="agregar(form.value)">
    	  <ion-list
    	     margin-bottom>
          <ion-item
@@ -31,7 +31,7 @@
          <ion-item margin-bottom no-lines>
 
           <ion-label floating>Definición</ion-label>
-          <ion-textarea type="text" formControlName="definicion"></ion-textarea>
+          <ion-textarea type="text" formControlName="definicion" rows="5"></ion-textarea>
          </ion-item>
 
          <!-- Assign the technologies FormArray to the form
@@ -52,10 +52,10 @@
                <ion-item-group>
                   <ion-item>
                      <ion-label floating>Ejemplo #{{ i+1 }}</ion-label>
-                     <ion-input
+                     <ion-textarea
                         type="text"
-                        maxlength="50"
-                        formControlName="ejemplo"></ion-input>
+                        formControlName="ejemplo"
+                        rows="2"></ion-textarea>
                   </ion-item>
 
 
@@ -66,7 +66,7 @@
                      icon-left
                      clear
                      *ngIf="form.controls.ejemplos.length > 1"
-                     (click)="removeInputField(i)">
+                     (click)="removerEjemplo(i)">
                      <ion-icon name="close"></ion-icon>
                      Quitar
                   </span>
@@ -81,7 +81,7 @@
             float-left
             icon-left
             clear
-            (click)="addNewInputField()">
+            (click)="agregarNuevoEjemplo()">
                <ion-icon name="add"></ion-icon>
                Agregar nuevo ejemplo
          </span>
@@ -100,7 +100,6 @@
             <ion-option value="{{cat.categoria}}" *ngFor="let cat of this.categorias | async">{{ cat.categoria }}</ion-option>
           </ion-select>
         </ion-item>
-
 
    	 </ion-list>
 

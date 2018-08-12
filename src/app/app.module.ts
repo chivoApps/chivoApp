@@ -16,6 +16,9 @@ import { LoginPage } from "../pages/login/login";
 import { AboutPage } from '../pages/about/about';
 import { DepartmentDetailPage } from "../pages/department-detail/department-detail";
 import { PalabrasPage } from "../pages/palabras/palabras";
+import { CategoriasListPage } from '../pages/categorias-list/categorias-list';
+import { PalabraDetailPage } from '../pages/palabra-detail/palabra-detail';
+import { CategoriasPage } from '../pages/categorias/categorias';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -24,9 +27,11 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { DatabaseProvider } from '../providers/database/database';
 import { UsuarioProvider } from '../providers/usuario/usuario';
+import { MessageProvider } from '../providers/message/message';
+
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
-import { PalabraDetailPage } from '../pages/palabra-detail/palabra-detail';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAQR0lmoWFN2PThw0QnuIzjsKMwcQAgClg",
@@ -48,7 +53,9 @@ export const firebaseConfig = {
     AboutPage,
     DepartmentDetailPage,
     PalabrasPage,
-    PalabraDetailPage
+    PalabraDetailPage,
+    CategoriasListPage,
+    CategoriasPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +75,9 @@ export const firebaseConfig = {
     AboutPage,
     DepartmentDetailPage,
     PalabrasPage,
-    PalabraDetailPage
+    PalabraDetailPage,
+    CategoriasListPage,
+    CategoriasPage
   ],
   providers: [
     StatusBar,
@@ -78,7 +87,8 @@ export const firebaseConfig = {
     AngularFireDatabase,
     UsuarioProvider,
     Facebook,
-    GooglePlus
+    GooglePlus,
+    MessageProvider
   ]
 })
 export class AppModule {}

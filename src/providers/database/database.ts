@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from "angularfire2/database/database";
+import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
+import { MessageProvider } from "../../providers/message/message";
 
-import {  
-  AngularFirestore } from 'angularfire2/firestore/firestore';
-import { AngularFirestoreCollection } from 'angularfire2/firestore';
+export interface User{
+  id?: string,
+  nombre?: string,
+  uid?: string
+}
 
 @Injectable()
 export class DatabaseProvider {
@@ -11,7 +15,9 @@ export class DatabaseProvider {
   categoria = {
     id: null,
     categoria: null,
-    icon: null
+    icon: null,
+    usuario: null,
+    descripcion: null
   }
 
   palabra = {
@@ -20,30 +26,74 @@ export class DatabaseProvider {
     definicion: null,
     ejemplos: null,
     categorias: null,
-    departamentos: null
+    departamentos: null,
+    usuario: null
   }
+
+  usuarios: User[];
 
   constructor(public afDB: AngularFireDatabase,
-              private fireStore: AngularFirestore) {
+              private fireStore: AngularFirestore,
+              private message: MessageProvider) {
 
 
   }
 
-  crear_categoria(categoria, icon){
+  crear_categoria(categoria, descripcion, user,icon){
     
     this.categoria.id = this.fireStore.createId();
     this.categoria.categoria = categoria;
     this.categoria.icon = icon;
+    this.categoria.usuario = user;
+    this.categoria.descripcion = descripcion;
 
-    return this.fireStore.doc("categorias/"+this.categoria.id).set(this.categoria);
+    this.fireStore.doc("categorias/"+this.categoria.id).set(this.categoria)
+        .then(() => {
+          this.message.show("¡Éxito!", "Se ha agregado la categoría exitosamente.");
+        })
+        .catch( er => {
+          this.message.show("Error", "Upss! ha ocurrido un error. Error: "+er);
+        });
 
+  }
+
+  edit_usuarios(){
+
+    let flag = false;
+    let batch = this.fireStore.firestore.batch();
+    this.fireStore.collection("usuarios", ref => ref.where("uid","==","CdlYDA0MU5XGdb0ODnZMzqDuzoq2")).snapshotChanges().subscribe( vals => {
+      this.usuarios = vals.map( item => {
+        return{
+          id: item.payload.doc.data().id,
+          nombre: item.payload.doc.data().nombre,
+          uid: item.payload.doc.data().uid
+        }
+      });
+      
+      new Promise((x,y)=>{
+        this.usuarios.forEach( (item: User) =>{
+
+          let ref = this.fireStore.doc('usuarios/'+item.id).ref;
+          batch.update(ref, {last__: "jsquare"});
+
+        });
+        x({succed: true});
+      }).then( ()=>{
+        batch.commit().then( () => {
+          console.log("actualizado con exito");
+        })
+      });
+
+
+    });
+  
   }
 
   get_categorias(): AngularFirestoreCollection<any>{
     return this.fireStore.collection("categorias", ref => ref.orderBy("categoria", "asc"));
   }
 
-  add_palabra(data){
+  add_palabra(data, user){
 
     this.palabra.id = this.fireStore.createId();
     this.palabra.palabra = data.palabra.toLowerCase();
@@ -51,8 +101,16 @@ export class DatabaseProvider {
     this.palabra.departamentos = data.departamentos;
     this.palabra.definicion = data.definicion;
     this.palabra.categorias = data.categorias;
+    this.palabra.usuario = user;
 
-    return this.fireStore.doc("diccionario/"+this.palabra.id).set(this.palabra);
+    this.fireStore.doc("diccionario/"+this.palabra.id).set(this.palabra)
+        .then(() => {
+          this.message.show("¡Éxito!", "Se ha agregado la palabra exitosamente.");
+        
+        })
+        .catch( (er) => {
+          this.message.show("Error", "Upss! ha ocurrido un error. Error: "+er);
+        });
 
   }
 

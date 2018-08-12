@@ -28,10 +28,6 @@
 
 <ion-content class="fondo">
 
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-
     <div *ngIf="busqueda" full>
         <ion-card *ngFor="let result of search | async" (click)="open_definicion(result)">
             <ion-card-header> {{result.palabra}} </ion-card-header>
@@ -50,22 +46,4 @@
 		</ion-card-content>
 	</ion-card>
 	
-
-	<ion-card class="estiloTarjeta">
-		<ion-card-header class="estiloTarjeta">
-		CATEGORIAS
-		</ion-card-header>
-	
-		<ion-list>
-            <button ion-item *ngFor="let categoria of categorias | async" 
-                class="estiloTarjeta" (click)="goToDepartments(categoria.id)">
-				<ion-icon [name]="categoria.icon" item-start></ion-icon>
-				{{ categoria.categoria}}
-			</button> 
-	
-		</ion-list>
-    </ion-card>
-    
-    <button ion-button block color="primary" (click)="crear_categoria()">AGREGAR CAT</button>
-
 </ion-content>
