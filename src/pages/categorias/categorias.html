@@ -1,9 +1,3 @@
-<!--
-  Generated template for the CategoriasPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="primary">
@@ -12,7 +6,7 @@
             <ion-icon name="close"></ion-icon>
         </button>
     </ion-buttons>
-    
+
     <ion-title end></ion-title>
   </ion-navbar>
 
@@ -23,20 +17,12 @@
 <ion-content padding>
 
 
-  <form
-      [formGroup]="form"
-      (ngSubmit)="agregar(form.value)">
-   	  <ion-list
-   	     margin-bottom>
-         <ion-item
-            margin-bottom
-            no-lines>
+  <form [formGroup]="form" (ngSubmit)="agregar(form.value)">
+   	  <ion-list margin-bottom>
+         <ion-item margin-bottom no-lines>
             <ion-label floating>Categoría</ion-label>
-
-            <!-- Assign our first FormControl of name to the input field -->
-            <ion-input
-               type="text"
-               formControlName="categoria"></ion-input>
+    
+            <ion-input type="text" formControlName="categoria"></ion-input>
          </ion-item>
 
 
@@ -48,16 +34,7 @@
 
    	 </ion-list>
 
-
-   	 <!-- Only allow form to be submitted IF validation criteria for
-              input fields has been successfully passed -->
-         <button
-   	     ion-button
-   	     block
-   	     margin-top
-   	     color="primary"
-   	     text-center
-   	     [disabled]="!form.valid">Agregar</button>
+         <button ion-button block margin-top color="primary" text-center [disabled]="!form.valid">Agregar</button>
    </form>
 
 
