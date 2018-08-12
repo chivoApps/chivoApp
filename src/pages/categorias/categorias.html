@@ -17,20 +17,12 @@
 <ion-content padding>
 
 
-  <form
-      [formGroup]="form"
-      (ngSubmit)="agregar(form.value)">
-   	  <ion-list
-   	     margin-bottom>
-         <ion-item
-            margin-bottom
-            no-lines>
+  <form [formGroup]="form" (ngSubmit)="agregar(form.value)">
+   	  <ion-list margin-bottom>
+         <ion-item margin-bottom no-lines>
             <ion-label floating>Categoría</ion-label>
-
-            <!-- Assign our first FormControl of name to the input field -->
-            <ion-input
-               type="text"
-               formControlName="categoria"></ion-input>
+    
+            <ion-input type="text" formControlName="categoria"></ion-input>
          </ion-item>
 
 
