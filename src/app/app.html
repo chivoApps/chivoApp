@@ -3,11 +3,22 @@
       <ion-toolbar color="primary">
 
         <div class="user">
-          
+
               <img [src]="user.imagen" *ngIf="logueado">
               <h4 *ngIf="logueado">{{ user.nombre }}</h4>
 
         </div>
+
+
+
+
+
+
+
+
+
+
+
 
       </ion-toolbar>
     </ion-header>
@@ -30,5 +41,5 @@
       </ion-list>
     </ion-content>
   </ion-menu>
-  
+
   <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
