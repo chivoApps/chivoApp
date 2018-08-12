@@ -40,7 +40,7 @@ export class DatabaseProvider {
   }
 
   crear_categoria(categoria, descripcion, user,icon){
-    
+
     this.categoria.id = this.fireStore.createId();
     this.categoria.categoria = categoria;
     this.categoria.icon = icon;
@@ -69,7 +69,7 @@ export class DatabaseProvider {
           uid: item.payload.doc.data().uid
         }
       });
-      
+
       new Promise((x,y)=>{
         this.usuarios.forEach( (item: User) =>{
 
@@ -86,7 +86,7 @@ export class DatabaseProvider {
 
 
     });
-  
+
   }
 
   get_categorias(): AngularFirestoreCollection<any>{
@@ -106,7 +106,7 @@ export class DatabaseProvider {
     this.fireStore.doc("diccionario/"+this.palabra.id).set(this.palabra)
         .then(() => {
           this.message.show("¡Éxito!", "Se ha agregado la palabra exitosamente.");
-        
+
         })
         .catch( (er) => {
           this.message.show("Error", "Upss! ha ocurrido un error. Error: "+er);
@@ -116,7 +116,7 @@ export class DatabaseProvider {
 
   search(param){
     const end = param.toLowerCase() + '\uf8ff';
-    return this.fireStore.collection("diccionario", ref => 
+    return this.fireStore.collection("diccionario", ref =>
       ref.orderBy('palabra')
       .limit(5)
       .startAt(param.toLowerCase())
