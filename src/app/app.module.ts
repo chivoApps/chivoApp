@@ -31,7 +31,7 @@ import { MessageProvider } from '../providers/message/message';
 
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
-
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAQR0lmoWFN2PThw0QnuIzjsKMwcQAgClg",
@@ -88,7 +88,8 @@ export const firebaseConfig = {
     UsuarioProvider,
     Facebook,
     GooglePlus,
-    MessageProvider
+    MessageProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

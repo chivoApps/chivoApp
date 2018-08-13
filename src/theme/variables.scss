@@ -34,7 +34,10 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #2e86de,
+  primary:    (
+      base:#2e86de,
+      contrast: #fff
+  ),
   secondary:  #10ac84,
   danger:     #ee5253,
   light:      #c8d6e5,
@@ -99,4 +102,14 @@ $colors: (
 @font-face {
   font-family: "Noodle";
   src: url("../assets/fonts/big_noodle_titling.ttf");
+}
+
+@font-face{
+    font-family: "Learners";
+    src: url("../assets/fonts/Learners.ttf");
+}
+
+@font-face{
+    font-family: "Precursive";
+    src: url("../assets/fonts/Precursive.otf");
 }

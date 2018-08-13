@@ -59,33 +59,7 @@ export class DatabaseProvider {
 
   edit_usuarios(){
 
-    let flag = false;
-    let batch = this.fireStore.firestore.batch();
-    this.fireStore.collection("usuarios", ref => ref.where("uid","==","CdlYDA0MU5XGdb0ODnZMzqDuzoq2")).snapshotChanges().subscribe( vals => {
-      this.usuarios = vals.map( item => {
-        return{
-          id: item.payload.doc.data().id,
-          nombre: item.payload.doc.data().nombre,
-          uid: item.payload.doc.data().uid
-        }
-      });
-
-      new Promise((x,y)=>{
-        this.usuarios.forEach( (item: User) =>{
-
-          let ref = this.fireStore.doc('usuarios/'+item.id).ref;
-          batch.update(ref, {last__: "jsquare"});
-
-        });
-        x({succed: true});
-      }).then( ()=>{
-        batch.commit().then( () => {
-          console.log("actualizado con exito");
-        })
-      });
-
-
-    });
+    
 
   }
 

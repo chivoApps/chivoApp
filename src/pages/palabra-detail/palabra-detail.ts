@@ -1,29 +1,43 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-
-/**
- * Generated class for the PalabraDetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { SocialSharing } from '@ionic-native/social-sharing';
+import domtoimage from 'dom-to-image';
+import { Platform } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-palabra-detail',
-  templateUrl: 'palabra-detail.html',
+    selector: 'page-palabra-detail',
+    templateUrl: 'palabra-detail.html',
 })
 export class PalabraDetailPage {
 
-  public palabra:any;
+    public palabra: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              public viewCtrl: ViewController) {
-    this.palabra = this.navParams.get("palabra");
-  }
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+        public viewCtrl: ViewController,
+        private share: SocialSharing, private platform: Platform) {
 
-  close(){
-    this.viewCtrl.dismiss();
-  }
+            this.palabra = this.navParams.get("palabra");
+        }
 
-}
+        close() {
+            this.viewCtrl.dismiss();
+        }
+
+        shareInFacebook() {
+
+            domtoimage.toJpeg(document.getElementById("share-image"),
+            { quality: 1.0 })
+            .then(dataUrl => {
+                this.share.share("chivoApp", "chivoApp :')", dataUrl, "enlace");
+            })
+            .catch(function(error) {
+                console.error('oops, something went wrong!', error);
+            });
+
+
+
+            
+        }
+
+    }

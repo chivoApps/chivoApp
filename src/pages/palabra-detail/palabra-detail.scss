@@ -1,3 +1,40 @@
 page-palabra-detail {
 
+    #share-header{
+        background-color: color($colors, primary) !important;
+    }
+
+    #app-title{
+        font-family: "OverTheSeasPersonalUse";
+        text-align: right;
+        color: #fff;
+        font-size: 18pt;
+        text-shadow: 3px 3px 2px color($colors, semi-dark);
+
+    }
+
+    #palabra{
+        margin-top: 15px;
+        font-family: "Learners";
+        font-size: 20pt;
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+
+    #definicion-title{
+        font-family: "Learners";
+        font-size: 16pt;
+        text-transform: capitalize;
+        font-weight: bold;
+        padding-top: 20px;
+    }
+
+    #definicion{
+        font-family: "Learners";
+        font-size: 14pt;
+        // text-transform: capitalize;
+        text-align: justify;
+        font-weight: bold;
+    }
+
 }
