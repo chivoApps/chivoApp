@@ -1,118 +1,87 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>palabras</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>palabras</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
-  <form
-      [formGroup]="form"
-      (ngSubmit)="agregar(form.value)">
-   	  <ion-list
-   	     margin-bottom>
-         <ion-item
-            margin-bottom
-            no-lines>
-            <ion-label floating>Palabra</ion-label>
+    <form [formGroup]="form" (ngSubmit)="agregar(form.value)">
+        <ion-list margin-bottom>
+            <ion-item margin-bottom no-lines>
+                <ion-label floating>Palabra</ion-label>
 
-            <!-- Assign our first FormControl of name to the input field -->
-            <ion-input
-               type="text"
-               maxlength="40"
-               formControlName="palabra"></ion-input>
-            <span>Please enter a framework name of no more than 40 characters</span>
-         </ion-item>
+                <!-- Assign our first FormControl of name to the input field -->
+                <ion-input type="text" maxlength="40" formControlName="palabra"></ion-input>
+                <span>Please enter a framework name of no more than 40 characters</span>
+            </ion-item>
 
 
-         <ion-item margin-bottom no-lines>
+            <ion-item margin-bottom no-lines>
 
-          <ion-label floating>Definición</ion-label>
-          <ion-textarea type="text" formControlName="definicion" rows="5"></ion-textarea>
-         </ion-item>
+                <ion-label floating>Definición</ion-label>
+                <ion-textarea type="text" formControlName="definicion" rows="5"></ion-textarea>
+            </ion-item>
 
-         <!-- Assign the technologies FormArray to the form
-              where we want to track/generate new input track fields -->
-	     <div
-	        formArrayName="ejemplos"
-	        margin-bottom>
+            <!-- Assign the technologies FormArray to the form
+            where we want to track/generate new input track fields -->
+            <div formArrayName="ejemplos" margin-bottom>
 
 
-            <!-- Assign a FormGroupName property binding to track
-                 and manage each separate generated input field.
-                 Also iterate through the technologies FormArray to
-                 correctly track/render new input fields against
-                 existing fields -->
-            <section
-               [formGroupName]="i"
-               *ngFor="let tech of form.controls.ejemplos.controls; let i = index">
-               <ion-item-group>
-                  <ion-item>
-                     <ion-label floating>Ejemplo #{{ i+1 }}</ion-label>
-                     <ion-textarea
-                        type="text"
-                        formControlName="ejemplo"
-                        rows="2"></ion-textarea>
-                  </ion-item>
+                <!-- Assign a FormGroupName property binding to track
+                and manage each separate generated input field.
+                Also iterate through the technologies FormArray to
+                correctly track/render new input fields against
+                existing fields -->
+                <section [formGroupName]="i" *ngFor="let tech of form.controls.ejemplos.controls; let i = index">
+                    <ion-item-group>
+                        <ion-item>
+                            <ion-label floating>Ejemplo #{{ i+1 }}</ion-label>
+                            <ion-textarea type="text" formControlName="ejemplo" rows="2"></ion-textarea>
+                        </ion-item>
 
 
-                  <!-- Allow generated input field to be removed -->
-                  <span
-                     float-right
-                     ion-button
-                     icon-left
-                     clear
-                     *ngIf="form.controls.ejemplos.length > 1"
-                     (click)="removerEjemplo(i)">
-                     <ion-icon name="close"></ion-icon>
-                     Quitar
-                  </span>
-               </ion-item-group>
-            </section>
-         </div>
+                        <!-- Allow generated input field to be removed -->
+                        <span float-right ion-button icon-left clear *ngIf="form.controls.ejemplos.length > 1" (click)="removerEjemplo(i)">
+                            <ion-icon name="close"></ion-icon>
+                            Quitar
+                        </span>
+                    </ion-item-group>
+                </section>
+            </div>
 
 
-         <!-- Allow new input field to be generated/added -->
-         <span
-            ion-button
-            float-left
-            icon-left
-            clear
-            (click)="agregarNuevoEjemplo()">
-               <ion-icon name="add"></ion-icon>
-               Agregar nuevo ejemplo
-         </span>
+            <!-- Allow new input field to be generated/added -->
+            <span ion-button float-left icon-left clear (click)="agregarNuevoEjemplo()">
+                <ion-icon name="add"></ion-icon>
+                Agregar nuevo ejemplo
+            </span>
 
 
-         <ion-item>
-          <ion-label floating>Departamentos</ion-label>
-          <ion-select  multiple="true" cancelText="Cancelar" okText="Aceptar" formControlName="departamentos">
-            <ion-option value="{{depa}}" *ngFor="let depa of this.departaments">{{ depa }}</ion-option>
-          </ion-select>
-        </ion-item>
+            <ion-item>
+                <ion-label floating>Departamentos</ion-label>
+                <ion-select multiple="true" cancelText="Cancelar" okText="Aceptar" formControlName="departamentos">
+                    <ion-option value="{{depa}}" *ngFor="let depa of this.departaments">{{ depa }}</ion-option>
+                </ion-select>
+            </ion-item>
 
-        <ion-item>
-          <ion-label floating>Categorias</ion-label>
-          <ion-select  multiple="true" cancelText="Cancelar" okText="Aceptar" formControlName="categorias">
-            <ion-option value="{{cat.categoria}}" *ngFor="let cat of this.categorias | async">{{ cat.categoria }}</ion-option>
-          </ion-select>
-        </ion-item>
+            <ion-item>
+                <ion-label floating>Categorias</ion-label>
+                <ion-select multiple="true" cancelText="Cancelar" okText="Aceptar" formControlName="categorias">
+                    <ion-option value="{{cat.categoria}}" *ngFor="let cat of this.categorias | async">{{ cat.categoria }}</ion-option>
+                </ion-select>
+            </ion-item>
 
-   	 </ion-list>
+        </ion-list>
 
 
-   	 <!-- Only allow form to be submitted IF validation criteria for
-              input fields has been successfully passed -->
-         <button
-   	     ion-button
-   	     block
-   	     margin-top
-   	     color="primary"
-   	     text-center
-   	     [disabled]="!form.valid">Agregar</button>
-   </form>
+        <!-- Only allow form to be submitted IF validation criteria for
+        input fields has been successfully passed -->
+        <button ion-button block margin-top color="primary" text-center [disabled]="!form.valid">Agregar</button>
+
+    </form>
 
 </ion-content>

@@ -6,67 +6,62 @@ import { DatabaseProvider } from '../../providers/database/database';
 
 @IonicPage()
 @Component({
-  selector: 'page-palabras',
-  templateUrl: 'palabras.html',
+    selector: 'page-palabras',
+    templateUrl: 'palabras.html',
 })
 export class PalabrasPage {
 
-  public form: FormGroup;
-  public departaments = [
-    "San Miguel", "La Unión", "Morazán", "Usulután", "San Salvador", "Cuscatlán",
-    "La Libertad", "Chalatenango", "San Vicente", "La Paz", "Cabañas", "Santa Ana", 
-    "Ahuachapán", "Sonsonate"
-  ];
+    public form: FormGroup;
+    public departaments = [
+        "San Miguel", "La Unión", "Morazán", "Usulután", "San Salvador", "Cuscatlán",
+        "La Libertad", "Chalatenango", "San Vicente", "La Paz", "Cabañas", "Santa Ana",
+        "Ahuachapán", "Sonsonate"
+    ];
 
-  public categorias: any;
-  public nombre_usuario: string;
-
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              private _FB: FormBuilder, public db: DatabaseProvider) {
-
-                this.form = this._FB.group({
-                  palabra       	  : ['', Validators.required],
-                  definicion        : ['', Validators.required],
-                  ejemplos     : this._FB.array([
-                     this.crearEjemplo()
-                  ]),
-                  departamentos: ['', Validators.required],
-                  categorias: ['', Validators.required]
-               });
-
-              this.categorias = this.db.get_categorias().valueChanges();
-  }
-
-  crearEjemplo() : FormGroup
-  {
-     return this._FB.group({
-        ejemplo 		: ['', Validators.required]
-     });
-  }
+    public categorias: any;
+    public nombre_usuario: string;
 
 
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+        private _FB: FormBuilder, public db: DatabaseProvider) {
 
-  agregarNuevoEjemplo() : void
-  {
-     const control = <FormArray>this.form.controls.ejemplos;
-     control.push(this.crearEjemplo());
-  }
+            this.form = this._FB.group({
+                palabra: ['', Validators.required],
+                definicion: ['', Validators.required],
+                ejemplos: this._FB.array([
+                    this.crearEjemplo()
+                ]),
+                departamentos: ['', Validators.required],
+                categorias: ['', Validators.required]
+            });
+
+            this.categorias = this.db.get_categorias().valueChanges();
+        }
+
+        crearEjemplo(): FormGroup {
+            return this._FB.group({
+                ejemplo: ['', Validators.required]
+            });
+        }
 
 
 
-  removerEjemplo(i : number) : void
-  {
-     const control = <FormArray>this.form.controls.ejemplos;
-     control.removeAt(i);
-  }
+        agregarNuevoEjemplo(): void {
+            const control = <FormArray>this.form.controls.ejemplos;
+            control.push(this.crearEjemplo());
+        }
 
 
-  agregar(val : any) : void
-  { 
-    this.db.add_palabra(val, this.navParams.get("usuario"));
-    this.form.reset();
-  }
+
+        removerEjemplo(i: number): void {
+            const control = <FormArray>this.form.controls.ejemplos;
+            control.removeAt(i);
+        }
 
 
-}
+        agregar(val: any): void {
+            this.db.add_palabra(val, this.navParams.get("usuario"));
+            this.form.reset();
+        }
+
+    }
